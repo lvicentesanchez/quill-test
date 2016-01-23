@@ -20,6 +20,7 @@ object ScoreRepo {
 }
 
 private final class ScoreRepoImpl(db: DB.type, queries: ScoreQueries.type) extends ScoreRepo {
+
   override val playerScoreForLevel: (PlayerID, Level) => List[Score] =
     db.run(queries.playerScoreForLevel)
 }
