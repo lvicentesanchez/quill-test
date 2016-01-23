@@ -5,7 +5,7 @@ import repos.{ ScoreRepoImpl, ScoreRepo }
 
 object Main extends App {
 
-  val repo: ScoreRepo = new ScoreRepoImpl(DB, ScoreQueries)
+  val repo: ScoreRepo = ScoreRepoImpl(DB, ScoreQueries)
 
   repo.playerScoreForLevel(PlayerID("2"), Level("Level1")).foreach(println)
 
