@@ -13,14 +13,13 @@ trait ScoreRepo {
   def playerScoreForLevel: (PlayerID, Level) => List[Score]
 }
 
-class ScoreRepoImpl private (db: DB.type, queries: ScoreQueries.type) extends ScoreRepo {
+object ScoreRepo {
 
-  override val playerScoreForLevel: (PlayerID, Level) => List[Score] =
-    db.run(queries.playerScoreForLevel)
+  def apply(db: DB.type, queries: ScoreQueries.type): ScoreRepo =
+    new ScoreRepoImpl(db, queries)
 }
 
-object ScoreRepoImpl {
-
-  def apply(db: DB.type, queries: ScoreQueries.type): ScoreRepoImpl =
-    new ScoreRepoImpl(DB, ScoreQueries)
+private final class ScoreRepoImpl(db: DB.type, queries: ScoreQueries.type) extends ScoreRepo {
+  override val playerScoreForLevel: (PlayerID, Level) => List[Score] =
+    db.run(queries.playerScoreForLevel)
 }

@@ -1,6 +1,6 @@
 package entities
 
-import data.{ Level, Points, Attempt, PlayerID }
+import data.{ Attempt, Level, PlayerID, Points }
 
 /**
  * Created by luissanchez on 22/01/2016.
