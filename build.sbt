@@ -12,7 +12,8 @@ val testDependencies = Seq (
 )
 
 val rootDependencies = Seq(
-  "io.getquill" %% "quill-cassandra" % "0.2.2-SNAPSHOT" changing()
+  "io.getquill"    %% "quill-cassandra" % "0.2.2-SNAPSHOT" changing(),
+  "org.spire-math" %% "cats"            % "0.4.0-SNAPSHOT" changing()
 )
 
 val dependencies =
@@ -72,7 +73,6 @@ val formatting =
     .setPreference(MultilineScaladocCommentsStartOnFirstLine, false)
     .setPreference(PlaceScaladocAsterisksBeneathSecondAsterisk, false)
     .setPreference(PreserveSpaceBeforeArguments, false)
-    .setPreference(PreserveDanglingCloseParenthesis, true)
     .setPreference(RewriteArrowSymbols, false)
     .setPreference(SpaceBeforeColon, false)
     .setPreference(SpaceInsideBrackets, false)
@@ -94,6 +94,7 @@ val settings = Seq(
   javaOptions in run ++= forkedJvmOption,
   javaOptions in Test ++= forkedJvmOption,
   scalacOptions := compileSettings,
+  unmanagedClasspath in Compile += baseDirectory.value / "src" / "main" / "resources",
   // formatting
   //
   ScalariformKeys.preferences := formatting

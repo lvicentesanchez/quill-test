@@ -1,5 +1,6 @@
 package repos
 
+import cats.data.Reader
 import data.{ Level, PlayerID }
 import db.DB
 import db.queries.ScoreQueries
@@ -10,16 +11,11 @@ import entities.Score
  */
 trait ScoreRepo {
 
-  def playerScoreForLevel: (PlayerID, Level) => List[Score]
+  def playerScoreForLevel(playerId: PlayerID, level: Level): Reader[DB.type, List[Score]]
 }
 
-object ScoreRepo {
+object ScoreRepo extends ScoreRepo {
 
-  def apply(db: DB.type, queries: ScoreQueries.type): ScoreRepo =
-    new ScoreRepoImpl(db, queries)
-}
-
-private final class ScoreRepoImpl(db: DB.type, queries: ScoreQueries.type) extends ScoreRepo {
-  override val playerScoreForLevel: (PlayerID, Level) => List[Score] =
-    db.run(queries.playerScoreForLevel)
+  override def playerScoreForLevel(playerId: PlayerID, level: Level): Reader[DB.type, List[Score]] =
+    Reader(DB => DB.run(ScoreQueries.playerScoreForLevel)(playerId, level))
 }

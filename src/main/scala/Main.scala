@@ -1,13 +1,14 @@
 import data._
 import db._
-import db.queries.ScoreQueries
 import repos.ScoreRepo
 
 object Main extends App {
 
-  val repo: ScoreRepo = ScoreRepo(DB, ScoreQueries)
+  val repo = ScoreRepo
 
-  repo.playerScoreForLevel(PlayerID("2"), Level("Level1")).foreach(println)
+  repo.playerScoreForLevel(PlayerID("2"), Level("Level1")).
+    run(DB).
+    foreach(println)
 
   DB.close()
 }
