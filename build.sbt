@@ -27,18 +27,17 @@ val compileSettings = Seq(
   "-encoding", "UTF-8",
   "-feature",
   "-language:_",
-  //"-language:existentials",
-  //"-language:experimental.macros",
-  //"-language:higherKinds",
-  //"-language:implicitConversions",
   "-unchecked",
   //"-Xfatal-warnings",
   "-Xlint",
+  "-Ybackend:GenBCode",
+  "-Ydelambdafy:method",
   "-Yno-adapted-args",
-  //"-Ywarn-all",
-  //"-Ywarn-dead-code",
+  "-Ywarn-dead-code",
   "-Ywarn-numeric-widen",
-  "-Ywarn-value-discard"
+  "-Ywarn-value-discard",
+  "-Xfuture",
+  "-Ywarn-unused-import"
 )
 
 val forkedJvmOption = Seq(
