@@ -12,7 +12,7 @@ val testDependencies = Seq (
 )
 
 val rootDependencies = Seq(
-  "io.getquill"    %% "quill-cassandra" % "0.2.2-SNAPSHOT" changing(),
+  "io.getquill"    %% "quill-cassandra" % "0.3.0",
   "org.spire-math" %% "cats"            % "0.4.0-SNAPSHOT" changing()
 )
 

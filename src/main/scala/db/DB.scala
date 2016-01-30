@@ -6,4 +6,9 @@ import io.getquill.source.cassandra.CassandraSyncSource
 /**
  * Created by luissanchez on 22/01/2016.
  */
-object DB extends CassandraSyncSource[SnakeCase]
+class DB private () extends CassandraSyncSource[SnakeCase]
+
+object DB {
+
+  def apply(): DB = new DB()
+}

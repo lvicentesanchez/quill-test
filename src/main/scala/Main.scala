@@ -1,14 +1,25 @@
+import cats.std.future._
+import cats.std.list._
+import cats.{ Functor, Monad }
 import data._
 import db._
 import repos.ScoreRepo
 
+import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.Future
+
 object Main extends App {
 
-  val repo = ScoreRepo
+  val M = Monad[Future]
+  val F = M compose Functor[List]
+  val db = DB()
+  val repo = ScoreRepo(M)
 
-  repo.playerScoreForLevel(PlayerID("2"), Level("Level1")).
-    run(DB).
-    foreach(println)
+  val scores =
+    repo.playerScoreForLevel(PlayerID("2"), Level("Level1")).
+      run(db)
 
-  DB.close()
+  F.map(scores)(_.score).foreach(println)
+
+  db.close()
 }
