@@ -1,4 +1,4 @@
-// put this at the top of the file
+import com.typesafe.sbt.SbtScalariform.ScalariformKeys
 import scalariform.formatter.preferences._
 
 // Resolvers
@@ -7,8 +7,8 @@ resolvers ++= Seq(
 )
 
 // Dependencies
-
-val testDependencies = Seq (
+val compilerPlugins = Seq(
+  compilerPlugin("org.spire-math" %% "kind-projector" % "0.7.1")
 )
 
 val rootDependencies = Seq(
@@ -16,7 +16,11 @@ val rootDependencies = Seq(
   "org.spire-math" %% "cats"            % "0.4.0-SNAPSHOT" changing()
 )
 
+val testDependencies = Seq (
+)
+
 val dependencies =
+  compilerPlugins ++
   rootDependencies ++
   testDependencies
 
@@ -71,7 +75,7 @@ val formatting =
     .setPreference(IndentWithTabs, false)
     .setPreference(MultilineScaladocCommentsStartOnFirstLine, false)
     .setPreference(PlaceScaladocAsterisksBeneathSecondAsterisk, false)
-    .setPreference(PreserveSpaceBeforeArguments, false)
+    .setPreference(PreserveSpaceBeforeArguments, true)
     .setPreference(PreserveDanglingCloseParenthesis, true)
     .setPreference(RewriteArrowSymbols, false)
     .setPreference(SpaceBeforeColon, false)

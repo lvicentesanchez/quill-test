@@ -1,9 +1,10 @@
 package io.github.lvicentesanchez
 
 import cats._
+import cats.data.Kleisli
 import cats.std.future._
 import cats.std.list._
-import io.github.lvicentesanchez.data.{ Level, PlayerID }
+import io.github.lvicentesanchez.data.{Level, PlayerID}
 import io.github.lvicentesanchez.db.DB
 import io.github.lvicentesanchez.repos.ScoreRepo
 
@@ -14,16 +15,14 @@ import scala.concurrent.Future
  */
 object Main extends App {
 
-  val M = Monad[Future]
-  val F = M compose Functor[List]
+  implicit val M = Monad[Future]
+  val F = Functor[Kleisli[Future, DB, ?]] compose Functor[List]
   val db = DB()
   val repo = ScoreRepo(M)
 
-  val scores =
-    repo.playerScoreForLevel(PlayerID("2"), Level("Level1")).
-      run(db)
-
-  F.map(scores)(_.score).foreach(println)
+  F.map(repo.playerScoreForLevel(PlayerID("2"), Level("Level1")))(_.score).
+    run(db).
+    foreach(println)
 
   db.close()
 }

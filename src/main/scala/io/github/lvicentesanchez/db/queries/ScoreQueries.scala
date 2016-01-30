@@ -1,7 +1,7 @@
 package io.github.lvicentesanchez.db.queries
 
 import io.getquill._
-import io.github.lvicentesanchez.data.{ Level, PlayerID }
+import io.github.lvicentesanchez.data.{Level, PlayerID}
 import io.github.lvicentesanchez.entities.Score
 
 /**
