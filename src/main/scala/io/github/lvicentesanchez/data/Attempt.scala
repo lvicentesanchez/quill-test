@@ -1,4 +1,4 @@
-package data
+package io.github.lvicentesanchez.data
 
 import io.getquill._
 import io.getquill.source.MappedEncoding

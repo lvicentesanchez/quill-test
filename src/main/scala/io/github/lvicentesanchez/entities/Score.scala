@@ -1,6 +1,6 @@
-package entities
+package io.github.lvicentesanchez.entities
 
-import data.{ Attempt, Level, PlayerID, Points }
+import io.github.lvicentesanchez.data.{ Attempt, Level, PlayerID, Points }
 
 /**
  * Created by luissanchez on 22/01/2016.

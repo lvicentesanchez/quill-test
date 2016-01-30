@@ -1,4 +1,4 @@
-import com.typesafe.sbt.SbtScalariform.ScalariformKeys
+// put this at the top of the file
 import scalariform.formatter.preferences._
 
 // Resolvers
@@ -12,7 +12,8 @@ val testDependencies = Seq (
 )
 
 val rootDependencies = Seq(
-  "io.getquill" %% "quill-cassandra" % "0.2.2-SNAPSHOT" changing()
+  "io.getquill"    %% "quill-cassandra" % "0.3.0",
+  "org.spire-math" %% "cats"            % "0.4.0-SNAPSHOT" changing()
 )
 
 val dependencies =
@@ -55,8 +56,8 @@ val forkedJvmOption = Seq(
   "-XX:+UseCompressedOops"
 )
 
-val formatting = Seq(
-  ScalariformKeys.preferences := ScalariformKeys.preferences.value
+val formatting =
+  FormattingPreferences()
     .setPreference(AlignParameters, true)
     .setPreference(AlignSingleLineCaseStatements, false)
     .setPreference(AlignSingleLineCaseStatements.MaxArrowIndent, 40)
@@ -71,15 +72,15 @@ val formatting = Seq(
     .setPreference(MultilineScaladocCommentsStartOnFirstLine, false)
     .setPreference(PlaceScaladocAsterisksBeneathSecondAsterisk, false)
     .setPreference(PreserveSpaceBeforeArguments, false)
+    .setPreference(PreserveDanglingCloseParenthesis, true)
     .setPreference(RewriteArrowSymbols, false)
     .setPreference(SpaceBeforeColon, false)
     .setPreference(SpaceInsideBrackets, false)
     .setPreference(SpaceInsideParentheses, false)
     .setPreference(SpacesWithinPatternBinders, true)
-)
 
 val pluginsSettings =
-  scalariformSettings ++ formatting
+  scalariformSettings
 
 val settings = Seq(
   name := "quill-test",
@@ -93,10 +94,13 @@ val settings = Seq(
   javaOptions in run ++= forkedJvmOption,
   javaOptions in Test ++= forkedJvmOption,
   scalacOptions := compileSettings,
-  unmanagedClasspath in Compile += baseDirectory.value / "src" / "main" / "resources"
+  unmanagedClasspath in Compile += baseDirectory.value / "src" / "main" / "resources",
+  // formatting
+  //
+  ScalariformKeys.preferences := formatting
 )
 
-lazy val main =
+val main =
   project
     .in(file("."))
     .settings(
