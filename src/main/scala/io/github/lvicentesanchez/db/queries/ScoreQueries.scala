@@ -1,8 +1,8 @@
-package db.queries
+package io.github.lvicentesanchez.db.queries
 
-import data.{ Level, PlayerID }
-import entities.Score
 import io.getquill._
+import io.github.lvicentesanchez.data.{ Level, PlayerID }
+import io.github.lvicentesanchez.entities.Score
 
 /**
  * Created by luissanchez on 23/01/2016.

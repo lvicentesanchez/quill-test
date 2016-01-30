@@ -1,13 +1,17 @@
+package io.github.lvicentesanchez
+
+import cats._
 import cats.std.future._
 import cats.std.list._
-import cats.{ Functor, Monad }
-import data._
-import db._
-import repos.ScoreRepo
+import io.github.lvicentesanchez.data.{ Level, PlayerID }
+import io.github.lvicentesanchez.db.DB
+import io.github.lvicentesanchez.repos.ScoreRepo
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
-
+/**
+ * Created by luissanchez on 30/01/2016.
+ */
 object Main extends App {
 
   val M = Monad[Future]

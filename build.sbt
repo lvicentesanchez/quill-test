@@ -100,7 +100,7 @@ val settings = Seq(
   ScalariformKeys.preferences := formatting
 )
 
-lazy val main =
+val main =
   project
     .in(file("."))
     .settings(

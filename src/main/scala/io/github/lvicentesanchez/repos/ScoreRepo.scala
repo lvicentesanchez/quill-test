@@ -1,11 +1,11 @@
-package repos
+package io.github.lvicentesanchez.repos
 
 import cats.data.ReaderT
 import cats.{ Eval, Monad }
-import data.{ Level, PlayerID }
-import db.DB
-import db.queries.ScoreQueries
-import entities.Score
+import io.github.lvicentesanchez.data.{ Level, PlayerID }
+import io.github.lvicentesanchez.db.DB
+import io.github.lvicentesanchez.db.queries.ScoreQueries
+import io.github.lvicentesanchez.entities.Score
 
 /**
  * Created by luissanchez on 23/01/2016.
