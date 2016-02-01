@@ -12,9 +12,9 @@ import io.github.lvicentesanchez.entities.Score
  */
 trait ScoreRepo[F[_]] {
 
-  def playerScoreForLevel: DB => (PlayerID, Level) => F[List[Score]]
+  val playerScoreForLevel: DB => (PlayerID, Level) => F[List[Score]]
 
-  def playerScoreForLevelK: (PlayerID, Level) => ReaderT[F, DB, List[Score]]
+  val playerScoreForLevelK: (PlayerID, Level) => ReaderT[F, DB, List[Score]]
 }
 
 object ScoreRepo {
