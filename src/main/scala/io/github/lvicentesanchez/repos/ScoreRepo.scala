@@ -14,7 +14,7 @@ trait ScoreRepo[F[_]] {
 
   def playerScoreForLevel: DB => (PlayerID, Level) => F[List[Score]]
 
-  def playerScoreForLevelK(playerId: PlayerID, level: Level): ReaderT[F, DB, List[Score]]
+  def playerScoreForLevelK: (PlayerID, Level) => ReaderT[F, DB, List[Score]]
 }
 
 object ScoreRepo {
@@ -24,7 +24,8 @@ object ScoreRepo {
       db => (playerId, level) =>
         M.pureEval(Eval.now(db.run(ScoreQueries.playerScoreForLevel)(playerId, level)))
 
-    override def playerScoreForLevelK(playerId: PlayerID, level: Level): ReaderT[M, DB, List[Score]] =
-      ReaderT(playerScoreForLevel(_)(playerId, level))
+    override val playerScoreForLevelK: (PlayerID, Level) => ReaderT[M, DB, List[Score]] =
+      (playerId, level) =>
+        ReaderT(playerScoreForLevel(_)(playerId, level))
   }
 }
