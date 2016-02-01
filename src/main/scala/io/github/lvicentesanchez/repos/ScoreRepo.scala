@@ -12,13 +12,19 @@ import io.github.lvicentesanchez.entities.Score
  */
 trait ScoreRepo[F[_]] {
 
-  def playerScoreForLevel(playerId: PlayerID, level: Level): ReaderT[F, DB, List[Score]]
+  def playerScoreForLevel: DB => (PlayerID, Level) => F[List[Score]]
+
+  def playerScoreForLevelK(playerId: PlayerID, level: Level): ReaderT[F, DB, List[Score]]
 }
 
 object ScoreRepo {
   def apply[M[_]](M: Monad[M]): ScoreRepo[M] = new ScoreRepo[M] {
 
-    override def playerScoreForLevel(playerId: PlayerID, level: Level): ReaderT[M, DB, List[Score]] =
-      ReaderT(DB => M.pureEval(Eval.now(DB.run(ScoreQueries.playerScoreForLevel)(playerId, level))))
+    override val playerScoreForLevel: DB => (PlayerID, Level) => M[List[Score]] =
+      db => (playerId, level) =>
+        M.pureEval(Eval.now(db.run(ScoreQueries.playerScoreForLevel)(playerId, level)))
+
+    override def playerScoreForLevelK(playerId: PlayerID, level: Level): ReaderT[M, DB, List[Score]] =
+      ReaderT(playerScoreForLevel(_)(playerId, level))
   }
 }

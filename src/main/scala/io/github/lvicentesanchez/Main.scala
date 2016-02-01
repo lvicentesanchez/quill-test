@@ -20,7 +20,7 @@ object Main extends App {
   val db = DB()
   val repo = ScoreRepo(M)
 
-  F.map(repo.playerScoreForLevel(PlayerID("2"), Level("Level1")))(_.score).
+  F.map(repo.playerScoreForLevelK(PlayerID("2"), Level("Level1")))(_.score).
     run(db).
     foreach(println)
 
