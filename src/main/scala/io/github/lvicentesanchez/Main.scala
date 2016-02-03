@@ -1,9 +1,7 @@
 package io.github.lvicentesanchez
 
-import io.getquill._
-import io.getquill.naming.SnakeCase
-import io.getquill.sources.cassandra.CassandraSyncSource
 import io.github.lvicentesanchez.data.{Level, PlayerID}
+import io.github.lvicentesanchez.db.Cassandra
 import io.github.lvicentesanchez.repos.ScoreRepo
 
 /**
@@ -11,10 +9,9 @@ import io.github.lvicentesanchez.repos.ScoreRepo
  */
 object Main extends App {
 
-  val sync: CassandraSyncSource[SnakeCase] = source(new CassandraSyncSourceConfig[SnakeCase]("DB"))
-  val repo = ScoreRepo(sync)
+  val repo = ScoreRepo(Cassandra.DB)
 
   repo.playerScoreForLevel(PlayerID("2"), Level("Level1")).foreach(println)
 
-  sync.close()
+  Cassandra.DB.close()
 }

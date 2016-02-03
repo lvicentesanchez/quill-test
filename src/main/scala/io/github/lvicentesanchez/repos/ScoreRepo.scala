@@ -1,8 +1,7 @@
 package io.github.lvicentesanchez.repos
 
-import io.getquill.naming.SnakeCase
-import io.getquill.sources.cassandra.CassandraSyncSource
 import io.github.lvicentesanchez.data.{Level, PlayerID}
+import io.github.lvicentesanchez.db.Cassandra
 import io.github.lvicentesanchez.db.queries.ScoreQueries
 import io.github.lvicentesanchez.entities.Score
 
@@ -15,10 +14,10 @@ trait ScoreRepo {
 }
 
 object ScoreRepo {
-  def apply(source: CassandraSyncSource[SnakeCase]): ScoreRepo = new ScoreRepoImpl(source)
+  def apply(source: Cassandra.DB.type): ScoreRepo = new ScoreRepoImpl(source)
 }
 
-private class ScoreRepoImpl(source: CassandraSyncSource[SnakeCase]) extends ScoreRepo {
+private class ScoreRepoImpl(source: Cassandra.DB.type) extends ScoreRepo {
 
   override def playerScoreForLevel(playerId: PlayerID, level: Level): List[Score] =
     source.run(ScoreQueries.playerScoreForLevel)(playerId, level)
