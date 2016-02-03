@@ -13,6 +13,7 @@ val compilerPlugins = Seq(
 
 val rootDependencies = Seq(
   "io.getquill"   %% "quill-cassandra" % "0.3.2-SNAPSHOT",
+  "org.slf4j"      % "slf4j-simple"    % "1.7.7",
   "org.typelevel" %% "cats"            % "0.4.0"
 )
 
