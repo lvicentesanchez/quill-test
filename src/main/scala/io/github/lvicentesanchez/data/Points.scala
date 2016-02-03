@@ -1,7 +1,7 @@
 package io.github.lvicentesanchez.data
 
 import io.getquill._
-import io.getquill.source.MappedEncoding
+import io.getquill.sources.MappedEncoding
 
 /**
  * Created by luissanchez on 22/01/2016.
