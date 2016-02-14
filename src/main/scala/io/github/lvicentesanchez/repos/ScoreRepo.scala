@@ -1,4 +1,4 @@
-package io.github.lvicentesanchez.db.repos
+package io.github.lvicentesanchez.repos
 
 import cats.data.ReaderT
 import cats.{ Eval, Monad }

@@ -6,7 +6,7 @@ import cats.std.future._
 import cats.std.list._
 import io.github.lvicentesanchez.data.{ Level, PlayerID }
 import io.github.lvicentesanchez.db.Cassandra
-import io.github.lvicentesanchez.db.repos.ScoreRepo
+import io.github.lvicentesanchez.repos.ScoreRepo
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
