@@ -1,4 +1,4 @@
-package io.github.lvicentesanchez.entities
+package io.github.lvicentesanchez.db.entities
 
 import io.github.lvicentesanchez.data.{ Attempt, Level, PlayerID, Points }
 
