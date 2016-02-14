@@ -60,29 +60,6 @@ val forkedJvmOption = Seq(
   "-XX:+UseCompressedOops"
 )
 
-val formatting =
-  FormattingPreferences()
-    .setPreference(AlignParameters, true)
-    .setPreference(AlignSingleLineCaseStatements, false)
-    .setPreference(AlignSingleLineCaseStatements.MaxArrowIndent, 40)
-    .setPreference(CompactControlReadability, false)
-    .setPreference(CompactStringConcatenation, false)
-    .setPreference(DoubleIndentClassDeclaration, true)
-    .setPreference(FormatXml, true)
-    .setPreference(IndentLocalDefs, false)
-    .setPreference(IndentPackageBlocks, true)
-    .setPreference(IndentSpaces, 2)
-    .setPreference(IndentWithTabs, false)
-    .setPreference(MultilineScaladocCommentsStartOnFirstLine, false)
-    .setPreference(PlaceScaladocAsterisksBeneathSecondAsterisk, false)
-    .setPreference(PreserveSpaceBeforeArguments, true)
-    .setPreference(PreserveDanglingCloseParenthesis, true)
-    .setPreference(RewriteArrowSymbols, false)
-    .setPreference(SpaceBeforeColon, false)
-    .setPreference(SpaceInsideBrackets, false)
-    .setPreference(SpaceInsideParentheses, false)
-    .setPreference(SpacesWithinPatternBinders, true)
-
 val pluginsSettings =
   scalariformSettings
 
@@ -98,10 +75,10 @@ val settings = Seq(
   javaOptions in run ++= forkedJvmOption,
   javaOptions in Test ++= forkedJvmOption,
   scalacOptions := compileSettings,
-  unmanagedClasspath in Compile += baseDirectory.value / "src" / "main" / "resources",
+  //unmanagedClasspath in Compile += baseDirectory.value / "src" / "main" / "resources",
   // formatting
   //
-  ScalariformKeys.preferences := formatting
+  ScalariformKeys.preferences := PreferencesImporterExporter.loadPreferences(( file(".") / "formatter.preferences").getPath)
 )
 
 val main =
