@@ -9,4 +9,6 @@ object Attempt {
 
   implicit val decode: MappedEncoding[Int, Attempt] = mappedEncoding[Int, Attempt](Attempt(_))
   implicit val encode: MappedEncoding[Attempt, Int] = mappedEncoding[Attempt, Int](_.value)
+
+  implicit val ordering: Ordering[Attempt] = Ordering[Int].on(_.value)
 }

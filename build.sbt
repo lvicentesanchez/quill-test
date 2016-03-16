@@ -12,7 +12,7 @@ val compilerPlugins = Seq(
 )
 
 val rootDependencies = Seq(
-  "io.getquill"   %% "quill-cassandra" % "0.4.0",
+  "io.getquill"   %% "quill-cassandra" % "0.4.2-SNAPSHOT" changing(),
   "org.typelevel" %% "cats"            % "0.4.1"
 )
 
@@ -66,7 +66,7 @@ val pluginsSettings =
 val settings = Seq(
   name := "quill-test",
   version := "0.1-SNAPSHOT",
-  scalaVersion := "2.11.7",
+  scalaVersion := "2.11.8",
   libraryDependencies ++= dependencies,
   fork in run := true,
   fork in Test := true,

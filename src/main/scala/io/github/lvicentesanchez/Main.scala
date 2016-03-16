@@ -17,7 +17,7 @@ object Main extends App {
   val F = Functor[Kleisli[Future, Cassandra.DB.type, ?]] compose Functor[List]
   val repo = ScoreRepo(M)
 
-  F.map(repo.playerScoreForLevelK(PlayerID("2"), Level("Level1")))(_.score).
+  F.map(repo.playerScoreForLevelK(PlayerID("2"), Level("Level1")))(_.points).
     run(Cassandra.DB).
     foreach(println)
 
