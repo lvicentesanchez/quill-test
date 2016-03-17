@@ -2,7 +2,7 @@ package io.github.lvicentesanchez.db.queries
 
 import io.getquill._
 import io.getquill.sources.cassandra.ops._
-import io.github.lvicentesanchez.data.{ Points, Level, PlayerID }
+import io.github.lvicentesanchez.data.{ Level, PlayerID, Points }
 import io.github.lvicentesanchez.db.entities.Score
 
 object ScoreQueries {
