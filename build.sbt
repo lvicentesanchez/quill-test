@@ -12,8 +12,8 @@ val compilerPlugins = Seq(
 )
 
 val rootDependencies = Seq(
-  "io.getquill"   %% "quill-cassandra" % "0.8.0" changing(),
-  "org.typelevel" %% "cats"            % "0.6.0"
+  "io.getquill"   %% "quill-cassandra" % "0.10.0" changing(),
+  "org.typelevel" %% "cats-core"       % "0.7.2"
 )
 
 val testDependencies = Seq (

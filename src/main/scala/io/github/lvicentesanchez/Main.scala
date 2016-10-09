@@ -1,8 +1,8 @@
 package io.github.lvicentesanchez
 
 import cats._
-import cats.std.future._
-import cats.std.list._
+import cats.instances.future._
+import cats.instances.list._
 import io.getquill._
 import io.github.lvicentesanchez.data.{ Level, PlayerID }
 import io.github.lvicentesanchez.db.queries.ScoreQueries
@@ -14,7 +14,7 @@ import scala.concurrent.Future
 
 object Main extends App {
 
-  val M = Monad[Future]
+  val M = MonadError[Future, Throwable]
   val F = Functor[Future] compose Functor[List]
   val ctx = new Context[SnakeCase]("DB")
   val db = new CqlDB(ctx)
