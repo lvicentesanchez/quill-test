@@ -16,7 +16,7 @@ object Main extends App {
 
   val M = MonadError[Future, Throwable]
   val F = Functor[Future] compose Functor[List]
-  val ctx = new Context[SnakeCase]("DB")
+  val ctx: Context[SnakeCase] = new Context(SnakeCase, "DB")
   val db = new CqlDB(ctx)
   val repo = ScoreRepo(M, ScoreQueries(db))
 

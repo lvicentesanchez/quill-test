@@ -1,6 +1,6 @@
 package io.github.lvicentesanchez.data
 
-case class Attempt(value: Int) extends AnyVal
+final case class Attempt(value: Int) extends AnyVal
 
 object Attempt {
 

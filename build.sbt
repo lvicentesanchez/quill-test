@@ -8,12 +8,12 @@ resolvers ++= Seq(
 
 // Dependencies
 val compilerPlugins = Seq(
-  compilerPlugin("org.spire-math" %% "kind-projector" % "0.9.0")
+  compilerPlugin("org.spire-math" %% "kind-projector" % "0.9.4")
 )
 
 val rootDependencies = Seq(
-  "io.getquill"   %% "quill-cassandra" % "0.10.0",
-  "org.typelevel" %% "cats-core"       % "0.7.2"
+  "io.getquill"   %% "quill-cassandra" % "2.1.0",
+  "org.typelevel" %% "cats-core"       % "1.0.0-RC1"
 )
 
 val testDependencies = Seq (
@@ -66,7 +66,7 @@ val pluginsSettings =
 val settings = Seq(
   name := "quill-test",
   version := "0.1-SNAPSHOT",
-  scalaVersion := "2.11.8",
+  scalaVersion := "2.11.11",
   libraryDependencies ++= dependencies,
   fork in run := true,
   fork in Test := true,
